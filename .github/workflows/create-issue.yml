@@ -18,4 +18,4 @@ jobs:
         echo ${{ github.event.action }}
         echo ${{ github.event_name }}
         echo ${{ github.event.label.name }}
-        python .github/workflows/create-issue.py '$EVENT' test
+        python .github/workflows/create-issue.py "$EVENT" test
