@@ -1,0 +1,6 @@
+Everett==1.0.2
+markupsafe==2.0.1
+PyGitHub==1.51
+
+Werkzeug~=1.0.1
+requests~=2.27.1

@@ -19,7 +19,7 @@ jobs:
       
       - name: Install
         run: |
-          pip install everett
+          pip install -r .github/workflows/bot/requirements.txt
 
       - name: Create Backport Issue
         if: contains(github.event.label.name, 'backport-needed/')
