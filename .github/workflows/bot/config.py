@@ -50,6 +50,9 @@ def settings():
     GITHUB_PROJECT_NUMBER = config('github_project_number')
     E2E_PIPELINE = config('e2e_pipeline')
     BACKPORT_LABEL_KEY = config('backport_label_key', default='backport-needed')
+    
+    print(GITHUB_OWNER)
+    print(GITHUB_REPOSITORY)
 
     gh_api = Github(config('github_token'))
     repo = gh_api.get_repo('{}/{}'.format(GITHUB_OWNER, GITHUB_REPOSITORY))
