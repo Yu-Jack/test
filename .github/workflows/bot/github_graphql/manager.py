@@ -1,5 +1,4 @@
 import requests
-from bot import app
 from bot.github_graphql.ql_queries import GET_ISSUE_QUERY, GET_GLOBAL_ISSUE_QUERY, GET_ORGANIZATION_PROJECT_QUERY
 from bot.github_graphql.ql_mutation import ADD_ISSUE_TO_PROJECT_MUTATION, MOVE_ISSUE_TO_STATUS
 

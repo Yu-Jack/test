@@ -1,7 +1,7 @@
 import logging
 from bot.issue_transfer import IssueTransfer
 from bot.action import Action
-from bot import app, gtihub_project_manager, \
+from bot import gtihub_project_manager, \
     E2E_PIPELINE
 
 class ActionProject(Action):

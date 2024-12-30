@@ -1,4 +1,4 @@
-from bot import repo, gtihub_project_manager
+from bot import repo
 from bot.action import LabelAction
 import re
 

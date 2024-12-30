@@ -1,6 +1,5 @@
 import re, logging
-from bot import app, zenh_api, gtihub_project_manager, repo, \
-    BACKPORT_LABEL_KEY
+from bot import repo, BACKPORT_LABEL_KEY
 from bot.exception import CustomException, ExistedBackportComment
 from bot.label_action.create_gui_issue import CREATE_GUI_ISSUE_LABEL
 from bot.action import LabelAction

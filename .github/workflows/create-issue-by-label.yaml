@@ -20,9 +20,9 @@ jobs:
       - name: Create Backport Issue
         if: contains(github.event.label.name, 'backport-needed/')
         run: |
-          python .github/workflows/bot/main.py "$EVENT"
+          python .github/workflows/create-issue-by-label.py "$EVENT"
       
       - name: Create GUI Issue
         if: contains(github.event.label.name, 'require-ui/')
         run: |
-          python .github/scripts/bot/main.py "$EVENT"
+          python .github/scripts/create-issue-by-label.py "$EVENT"
