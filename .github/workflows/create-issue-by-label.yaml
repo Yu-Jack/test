@@ -1,0 +1,28 @@
+name: Create Issue by Label
+on:
+  issues:
+    types: [ labeled ]
+jobs:
+  backport:
+    runs-on: ubuntu-latest
+    env:
+      EVENT: ${{ toJson(github.event) }}
+      GITHUB_OWNER: Yu-Jack
+      GITHUB_REPOSITORY: test
+      GITHUB_PROJECT_NUMBER: "1"
+      E2E_PIPELINE: "Review,Ready For Test,Testing"
+      GITHUB_REPOSITORY_TEST: test
+      GITHUB_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Create Backport Issue
+        if: contains(github.event.label.name, 'backport-needed/')
+        run: |
+          python .github/workflows/bot/main.py "$EVENT"
+      
+      - name: Create GUI Issue
+        if: contains(github.event.label.name, 'require-ui/')
+        run: |
+          python .github/scripts/bot/main.py "$EVENT"
