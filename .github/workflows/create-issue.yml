@@ -7,8 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Test
+      env:
+        EVENT: ${{ toJson(github.event) }}
       run: |
-        echo ${{ toJson(github.event) }}
+        echo "$EVENT"
         echo ${{ github.event.action }}
         echo ${{ github.event_name }}
         echo ${{ github.event.label.name }}
