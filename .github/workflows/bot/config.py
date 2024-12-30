@@ -53,6 +53,8 @@ def settings():
     
     print(GITHUB_OWNER)
     print(GITHUB_REPOSITORY)
+    print(GITHUB_REPOSITORY_TEST)
+    print(GITHUB_PROJECT_NUMBER)
 
     gh_api = Github(config('github_token'))
     repo = gh_api.get_repo('{}/{}'.format(GITHUB_OWNER, GITHUB_REPOSITORY))
