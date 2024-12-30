@@ -19,7 +19,7 @@ class BotConfig(RequiredConfigMixin):
     required_config.add_option('github_owner', parser=str, default='harvester',
                                doc='Set the owner of the target GitHub '
                                    'repository.')
-    required_config.add_option('github_repository', parser=str, default='harvester', doc='Set the name of the target '
+    required_config.add_option('github_main_repository', parser=str, default='harvester', doc='Set the name of the target '
                                                                                          'GitHub repository.')
     required_config.add_option('github_repository_test', parser=str, default='tests', doc='Set the name of the tests '
                                                                                           'GitHub repository.')
@@ -45,7 +45,7 @@ def settings():
         E2E_PIPELINE, BACKPORT_LABEL_KEY, gh_api, zenh_api, repo, repo_test, gtihub_project_manager
     config = get_config()
     GITHUB_OWNER = config('github_owner')
-    GITHUB_REPOSITORY = config('github_repository')
+    GITHUB_REPOSITORY = config('github_main_repository')
     GITHUB_REPOSITORY_TEST = config('github_repository_test')
     GITHUB_PROJECT_NUMBER = config('github_project_number')
     E2E_PIPELINE = config('e2e_pipeline')
