@@ -8,6 +8,7 @@ jobs:
     steps:
     - name: Test
       run: |
-        echo ${{ github.event }}
+        echo ${{ toJson(github.event) }}
+        echo ${{ github.event.action }}
         echo ${{ github.event_name }}
         echo ${{ github.event.label.name }}
