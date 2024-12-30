@@ -6,6 +6,10 @@ jobs:
   backport:
     runs-on: ubuntu-latest
     steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
     - name: Test
       env:
         EVENT: ${{ toJson(github.event) }}
@@ -14,3 +18,4 @@ jobs:
         echo ${{ github.event.action }}
         echo ${{ github.event_name }}
         echo ${{ github.event.label.name }}
+        python .github/workflows/create-issue.py $EVENT test
