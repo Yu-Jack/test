@@ -5,14 +5,14 @@ on:
 jobs:
   backport:
     runs-on: ubuntu-latest
+    env:
+      EVENT: ${{ toJson(github.event) }}
     steps:
 
     - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Test
-      env:
-        EVENT: ${{ toJson(github.event) }}
       run: |
         echo "$EVENT"
         echo ${{ github.event.action }}
