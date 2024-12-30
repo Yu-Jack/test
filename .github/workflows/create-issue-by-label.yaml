@@ -16,13 +16,17 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+      
+      - name: Install
+        run: |
+          pip install everett
 
       - name: Create Backport Issue
         if: contains(github.event.label.name, 'backport-needed/')
         run: |
-          python .github/workflows/create-issue-by-label.py "$EVENT"
+          python .github/workflows/bot.py "$EVENT"
       
       - name: Create GUI Issue
         if: contains(github.event.label.name, 'require-ui/')
         run: |
-          python .github/scripts/create-issue-by-label.py "$EVENT"
+          python .github/scripts/bot.py "$EVENT"
