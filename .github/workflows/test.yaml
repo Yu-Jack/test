@@ -1,0 +1,11 @@
+name: Create Issue by Label
+on:
+  push:
+    branches: [ "main", "v*" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cool
+        run: |
+          echo cool
