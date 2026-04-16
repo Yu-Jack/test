@@ -1,0 +1,40 @@
+name: "PR Management Auto Assign"
+
+on:
+  workflow_run:
+    workflows:
+      - "PR Management Auto Assign Collect Data"
+    types: [completed]
+
+env:
+  REPO_NAME: JackTestHook/test
+
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      actions: read
+      pull-requests: write
+    steps:
+    - name: Download PR data artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: pr-auto-assign-data
+        run-id: ${{ github.event.workflow_run.id }}
+        github-token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+
+    - name: Load PR data
+      run: |
+        cat pr-auto-assign-data.env >> $GITHUB_ENV
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+
+    - name: Auto assign based on config
+      uses: rancher/gh-issue-mgr/auto-assign-action@b70f0bdf12a03e5e3f33e4f92ccb6c89deb3ebd9 # main
+      with:
+        configuration-path: .github/auto-assign-config.yaml
+        repo-token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
