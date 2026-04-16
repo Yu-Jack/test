@@ -22,14 +22,15 @@ jobs:
       with:
         name: pr-auto-assign-data
         run-id: ${{ github.event.workflow_run.id }}
-        github-token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+        github-token: ${{ github.token }}
 
     - name: Load PR data
       run: |
         cat pr-auto-assign-data.env >> $GITHUB_ENV
 
     - name: Auto assign based on config
-      GH_TOKEN: ${{ github.token }}
+      env:
+        GH_TOKEN: ${{ github.token }}
       run: |
         echo "Assigning PR author: $PR_AUTHOR"
         gh pr edit "$PR_NUMBER" --repo "${{ github.repository }}" --add-assignee "$PR_AUTHOR"
