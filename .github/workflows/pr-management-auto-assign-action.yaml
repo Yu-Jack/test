@@ -33,4 +33,4 @@ jobs:
         GH_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
       run: |
         echo "Assigning PR author: $PR_AUTHOR"
-        gh pr edit "$PR_NUMBER" --repo "${REPO_NAME}" --add-assignee "$PR_AUTHOR"
+        gh pr edit "$PR_NUMBER" --repo "${{ github.repository }}" --add-assignee "$PR_AUTHOR"
