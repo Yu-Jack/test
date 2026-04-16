@@ -7,7 +7,7 @@ on:
     types: [completed]
 
 env:
-  REPO_NAME: JackTestHook/test
+  REPO_NAME: Yu-Jack/test
 
 jobs:
   auto-assign:
@@ -28,13 +28,9 @@ jobs:
       run: |
         cat pr-auto-assign-data.env >> $GITHUB_ENV
 
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
-
     - name: Auto assign based on config
-      uses: rancher/gh-issue-mgr/auto-assign-action@b70f0bdf12a03e5e3f33e4f92ccb6c89deb3ebd9 # main
-      with:
-        configuration-path: .github/auto-assign-config.yaml
-        repo-token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+      env:
+        GH_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+      run: |
+        echo "Assigning PR author: $PR_AUTHOR"
+        gh pr edit "$PR_NUMBER" --repo "${REPO_NAME}" --add-assignee "$PR_AUTHOR"
