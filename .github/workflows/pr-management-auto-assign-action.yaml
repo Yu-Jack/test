@@ -29,6 +29,7 @@ jobs:
         cat pr-auto-assign-data.env >> $GITHUB_ENV
 
     - name: Auto assign based on config
+      GH_TOKEN: ${{ github.token }}
       run: |
         echo "Assigning PR author: $PR_AUTHOR"
         gh pr edit "$PR_NUMBER" --repo "${{ github.repository }}" --add-assignee "$PR_AUTHOR"
